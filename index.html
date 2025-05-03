@@ -8,125 +8,185 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 40px;
+      margin: 10px;
       color: #000;
+      font-size: 12px;
     }
+  
     .header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
+  
     .header h2 {
       color: #004aad;
-      font-size: 20px;
-      margin: 0;
+      font-size: 16px;
+      margin: 2px 0;
     }
+  
     .header h3 {
       font-weight: bold;
-      margin: 5px 0;
+      font-size: 14px;
+      margin: 2px 0;
     }
+  
     .header p {
-      margin: 3px;
+      margin: 2px;
+      font-size: 12px;
     }
-
+  
     .section {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
     }
-
-    .invoice-box {
-      border: none; /* Removed border */
-      padding: 10px;
-      width: 40%; /* Reduced from 48% */
-      box-sizing: border-box;
-      margin-bottom: 20px;
-    }
-
+  
+    .invoice-box,
     .customer-box {
-      border: none; /* Removed border */
-      padding: 10px;
-      width: 100%; /* Full width for the customer box */
+      padding: 4px;
       box-sizing: border-box;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
-
-    .customer-box input {
-      width: 100%; /* Make input fields take up the full width */
-      box-sizing: border-box;
+  
+    .invoice-box {
+      width: 45%;
     }
-
-    .invoice-box table, .customer-box table {
+  
+    .customer-box {
       width: 100%;
     }
-
-    .invoice-box td, .customer-box td {
-      padding: 5px;
-      border: 1px solid #000;
-    }
-
-    table.product-table {
+  
+    .invoice-box table,
+    .customer-box table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 10px;
     }
-
-    table.product-table th, table.product-table td {
+  
+    .invoice-box td,
+    .customer-box td {
+      padding: 3px;
       border: 1px solid #000;
-      padding: 6px;
-      text-align: center;
+      font-size: 12px;
     }
-
-    .actions {
-      margin-bottom: 10px;
-    }
-
-    .totals {
-      float: right;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    .note {
-      margin-top: 60px;
-      font-size: 13px;
-    }
-
-    @media print {
-      .no-print {
-        display: none !important;
-      }
-      input {
-        border: none;
-      }
-      body {
-        margin: 0;
-      }
-    }
-
+  
     input {
       width: 100%;
       box-sizing: border-box;
       border: none;
-      font-size: 14px;
+      font-size: 12px;
+      padding: 3px;
     }
-
+  
+    table.product-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4px;
+      font-size: 12px;
+    }
+  
+    table.product-table th,
+    table.product-table td {
+      border: 1px solid #000;
+      padding: 4px;
+      text-align: center;
+    }
+  
+    .actions {
+      margin-bottom: 4px;
+    }
+  
+    .totals {
+      float: right;
+      margin-top: 8px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+  
+    .note {
+      margin-top: 20px;
+      font-size: 11px;
+    }
+  
     .btn {
-      padding: 6px 12px;
-      font-size: 14px;
-      margin: 4px;
+      padding: 4px 10px;
+      font-size: 12px;
+      margin: 2px;
       cursor: pointer;
     }
-
+  
     .top-bar {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+      font-size: 12px;
     }
-
+  
     .top-bar input {
-      max-width: 300px;
+      max-width: 250px;
+      padding: 2px;
+      font-size: 12px;
+    }
+    table.product-table td input, table.product-table td {
+  font-size: 13px;
+}
+
+/* Description column - allow wrapping */
+table.product-table td:nth-child(2) input {
+  width: 100%;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+/* Set fixed width for numeric fields */
+table.product-table td:nth-child(3),
+table.product-table td:nth-child(4),
+table.product-table td:nth-child(5),
+table.product-table td:nth-child(6) {
+  width: 90px;
+  min-width: 80px;
+  max-width: 100px;
+}
+
+table.product-table th:nth-child(3),
+table.product-table th:nth-child(4),
+table.product-table th:nth-child(5),
+table.product-table th:nth-child(6) {
+  width: 90px;
+}
+
+  
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+  
+      input {
+        border: none;
+      }
+  
+      body {
+        margin: 0;
+      }
+  
+      .product-table th,
+      .product-table td {
+        padding: 3px;
+      }
+  
+      .header h2 {
+        font-size: 14px;
+      }
+  
+      .header h3 {
+        font-size: 13px;
+      }
+  
+      .header p {
+        font-size: 11px;
+      }
     }
   </style>
+  
 </head>
 <body>
 
@@ -163,6 +223,7 @@
     </div>
 
     <div class="customer-box">
+      <h4><strong>Bill To:</strong></h4>
       <table>
         <tr><td>Customer Name:</td><td><input type="text" id="customerName" ></td></tr>
         <tr><td>Address:</td><td><input type="text"></td></tr>
@@ -171,6 +232,7 @@
         <tr><td>Email:</td><td><input type="text"></td></tr>
       </table>
     </div>
+    
   </div>
 
   <div class="actions no-print">
@@ -218,7 +280,7 @@
     const row = tbody.insertRow();
     row.innerHTML = `
       <td class="row-number"></td>
-      <td><input type="text" /></td>
+      <td><input type="text" style="min-width: 200px; white-space: normal;" /></td>
       <td><input type="number" value="1" onchange="calculateTotal(this)"/></td>
       <td><input type="number" value="0.00" onchange="calculateTotal(this)"/></td>
       <td><input type="number" value="0.00" readonly/></td>
@@ -283,9 +345,11 @@
   }
 
   window.onload = () => {
-    loadInvoiceNumber();
-    addRow();
-  };
+  loadInvoiceNumber();
+  document.getElementById('invoiceDate').value = new Date().toISOString().split('T')[0];
+  addRow();
+};
+
 </script>
 </body>
 </html>
